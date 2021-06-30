@@ -36,33 +36,26 @@ class UserProfileManager(BaseUserManager):
         return user
 
 
-class UserProfile(AbstractBaseUser, PermissionsMixin):
-    class UserType(models.IntegerChoices):
-        User = 1
-        Commercial = 2
-        
+class UserProfile(AbstractBaseUser, PermissionsMixin):        
     id = models.AutoField(primary_key=True)
     email = models.EmailField(max_length=255, unique=True)
     username = models.CharField(max_length=255, unique=True)
-    name = models.CharField(max_length=255)
-    isActive = models.BooleanField(default=True)
     image = models.ImageField(upload_to=upload_location)
-    userType = models.IntegerField(choices=UserType.choices, default=UserType.User)
+    gender = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    about = models.CharField(max_length=1250, blank=True, null=True)
+    isPremium = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    isActive = models.BooleanField(default=True)
+    
 
     objects = UserProfileManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','name']
-    
-    def get_full_name(self):
-        return self.name
-    
-    def get_short_name(self):
-        return self.name
+    REQUIRED_FIELDS = ['username']
     
     def __str__(self):
-        return str(self.id) + ' ' + self.email + ' ' + self.name
+        return str(self.id) + ' ' + self.email + ' ' + self.username
     
 #Login
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
