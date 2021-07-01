@@ -1,6 +1,7 @@
 from django.urls import path
-from auth_user import views
+from anime import views
 
 urlpatterns = [
-    # path('',),
+    path('topList',views.getTopAnimeList, name='top_anime_list'),
+    path('genre/<parameter>',views.getAnimeByGenre, name='anime_by_genre'),
 ]

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.authtoken.views import ObtainAuthToken, AuthTokenSerializer
 from rest_framework.settings import api_settings
 from rest_framework.authtoken.models import Token
@@ -30,13 +29,3 @@ class LoginUser(ObtainAuthToken):
             except:
                 error_message = "Unable to login. Please check credentials."
             return handleResponseMessage(status.HTTP_400_BAD_REQUEST,error_message)
-        
-@api_view(['GET'])
-def test(request):
-    if request.user.is_authenticated:
-    
-        return handleResponseMessage(
-            status.HTTP_200_OK,
-            'Successfully called')
-    else:
-        return handleResponseMessage(status.HTTP_401_UNAUTHORIZED,'Authentication error.')
