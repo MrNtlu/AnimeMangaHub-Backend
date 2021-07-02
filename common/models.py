@@ -15,3 +15,25 @@ class CharacterModel(models.Model):
     
     def __str__(self):
         return str(self.name)
+    
+class Genres(models.TextChoices):
+        Action = "Action"
+        Adventure = "Adventure"
+        Comedy = "Comedy"
+        Drama = "Drama"
+        Fantasy = "Fantasy"
+        Historical = "Historical"
+        Horror = "Horror"
+        Magic = "Magic"
+        Mecha = "Mecha"
+        Music = "Music"
+        Mystery = "Mystery"
+        Romance = "Romance"
+        School = "School"
+        SciFi = "Sci-Fi"
+        Seinen = "Seinen"
+        Shoujo = "Shoujo"
+        Shounen = "Shounen"
+        SliceofLife = "Slice of Life"
+        Sports = "Sports"
+        Supernatural = "Supernatural"
